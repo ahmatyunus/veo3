@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Generator Prompt VEO3</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      background-color: #f5f5f5;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      margin-bottom: 12px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    label {
+      font-weight: bold;
+    }
+    .hasil {
+      background: white;
+      padding: 12px;
+      border-radius: 6px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .copied {
+      color: green;
+      font-size: 0.9em;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎥 Generator Prompt VEO3</h1>
+
+  <form id="promptForm">
+    <label>Subjek:</label>
+    <input type="text" id="subjek" placeholder="Contoh: seorang penari tradisional">
+
+    <label>Aksi:</label>
+    <input type="text" id="aksi" placeholder="Contoh: sedang menari perlahan">
+
+    <label>Latar Tempat / Adegan:</label>
+    <input type="text" id="adegan" placeholder="Contoh: di tengah hutan berkabut">
+
+    <label>Detail Kamera:</label>
+    <input type="text" id="kamera" placeholder="Contoh: close-up sinematik dengan pergerakan lambat">
+
+    <label>Gaya Visual:</label>
+    <input type="text" id="gaya" placeholder="Contoh: gaya sinematik realistis">
+
+    <label>Waktu / Cuaca:</label>
+    <input type="text" id="waktu" placeholder="Contoh: saat matahari terbit, hujan ringan">
+
+    <label>Suasana / Mood:</label>
+    <input type="text" id="mood" placeholder="Contoh: tenang dan magis">
+
+    <label>Efek Tambahan:</label>
+    <input type="text" id="efek" placeholder="Contoh: partikel cahaya beterbangan, kabut tipis">
+
+    <button type="button" onclick="generatePrompt()">Buat Prompt</button>
+    <button type="button" onclick="copyPrompt()">Salin Prompt</button>
+    <span id="copiedText" class="copied"></span>
+  </form>
+
+  <div class="hasil" id="outputPrompt">
+    <h3>🎬 Prompt yang Dihasilkan:</h3>
+    <p id="promptText">Belum ada prompt.</p>
+  </div>
+
+  <script>
+    function generatePrompt() {
+      const subjek = document.getElementById('subjek').value;
+      const aksi = document.getElementById('aksi').value;
+      const adegan = document.getElementById('adegan').value;
+      const kamera = document.getElementById('kamera').value;
+      const gaya = document.getElementById('gaya').value;
+      const waktu = document.getElementById('waktu').value;
+      const mood = document.getElementById('mood').value;
+      const efek = document.getElementById('efek').value;
+
+      const prompt = `${subjek} ${aksi}, ${adegan}, direkam dengan ${kamera}, bergaya ${gaya}, pada ${waktu}, dengan suasana ${mood}, ${efek}.`;
+
+      document.getElementById('promptText').innerText = prompt;
+      document.getElementById('copiedText').innerText = '';
+    }
+
+    function copyPrompt() {
+      const text = document.getElementById('promptText').innerText;
+      if (text && text !== 'Belum ada prompt.') {
+        navigator.clipboard.writeText(text).then(() => {
+          document.getElementById('copiedText').innerText = '✅ Disalin ke clipboard!';
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>
